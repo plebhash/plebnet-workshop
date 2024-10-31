@@ -1,0 +1,44 @@
+/* @theme plebnet-workshop */
+
+@import 'default';
+
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+
+section {
+  background-color: #000000;
+  color: white;
+}
+
+h1,h2 {
+  color: #ffffff;
+}
+
+h1 {
+  display: block;
+  display: block;
+  margin: 0 auto;
+}
+
+a {
+  color: #00ffff;
+}
+
+section.credit {
+  text-align: center;
+}
+
+credit {
+  display: block;
+  margin: 0 auto;
+}
+
+code * {
+  color: #cccccc;
+}
+
+pre {
+  background-color: #333333;
+}
