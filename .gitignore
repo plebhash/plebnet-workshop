@@ -1,0 +1,7 @@
+.idea
+.DS_Store
+bitcoin-*
+bitcoin_datadir
+bitcoin
+logs
+stratum-endpoint
