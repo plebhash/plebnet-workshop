@@ -185,68 +185,68 @@ these commands will:
 
 - Plug the included 5V 5A power supply into wall outlet
 - Attach the 5V barrel plug into the Bitaxe
-![center w:200](../img/barrel.jpg)
+![center w:400](../img/barrel.jpg)
 
 ---
 # setup bitaxe
 
-- using your phone or a laptop, join the Bitaxe setup SSID shown on the display. in this case; Bitaxe_6E71
-![center w:200](../img/wifisetup1.jpg)
+- using your phone or a laptop, join the Bitaxe setup SSID shown on the display. in this case; `Bitaxe_6E71`
+![center w:400](../img/wifisetup1.jpg)
 
 ---
 # config bitaxe
 
 - After your phone connects to the Bitaxe setup wifi, you should see a "captive portal" appear. If not, open a browser and go to `http://192.168.4.1`
 - Open the hamburger menu in the upper right and open the Network tab
-![center w:200](../img/wifi1.jpg)
+![center w:400](../img/wifi1.jpg)
 
 ---
 # config bitaxe
 
 - Enter the conference WiFi name and password **exactly**
 - click `Save`
-![center w:200](../img/wifi2.jpg)
+![center w:400](../img/wifi2.jpg)
 
 ---
 # config bitaxe
 
 - Go back to the hamburger menu. Click on `Restart` at the bottom
-![center w:200](../img/wifi3.jpg)
+![center w:400](../img/wifi3.jpg)
 
 ---
 
 # configure bitaxe mining
 
 - after the Bitaxe restarts it will show an IP address on the screen. Make sure your computer is back on conference wifi, and open this IP in your browser.
-![center w:200](../img/stratumsetup1.jpg)
+![center w:400](../img/stratumsetup1.jpg)
 
 ---
 
 # configure bitaxe mining
 
 - open the hamburger menu (if not already open) and click on the settings tab
-![center w:200](../img/stratum1.jpg)
+![center w:400](../img/stratum1.jpg)
 
 ---
 
 # configure bitaxe mining
 
 - Enter the workshop stratum details
-![center w:200](../img/stratum2.jpg)
+![center w:400](../img/stratum2.jpg)
 
 ---
 
 # configure bitaxe mining
 
 - click `save`
-![center w:200](../img/stratum3.jpg)
+![center w:400](../img/stratum3.jpg)
 
 ---
 
 # configure bitaxe mining
 
 - click `restart`
-![center w:200](../img/stratum4.jpg)
+![center w:400](../img/stratum4.jpg)
 
 ---
 
