@@ -61,9 +61,9 @@ fi
 echo "Creating $BITCOIN_DATADIR"
 mkdir -p $BITCOIN_DATADIR/signet
 
-#if [ -d "$PLEBNET_SNAPSHOT" ]; then
-#  cp -r plebnet_snapshot/{blocks,chainstate} $BITCOIN_DATADIR/signet
-#fi
+if [ -d "$PLEBNET_SNAPSHOT" ]; then
+  cp -r plebnet_snapshot/{blocks,chainstate} $BITCOIN_DATADIR/signet
+fi
 
 cat << EOF > $BITCOIN_DATADIR/bitcoin.conf
 [signet]
