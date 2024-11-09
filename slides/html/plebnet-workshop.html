@@ -40,8 +40,8 @@
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-theme="plebnet-workshop" style="--theme:plebnet-workshop;">
 <h1 id="wifi">wifi</h1>
 <ul>
-<li>SSID: <code>todo</code></li>
-<li>password: <code>todo</code></li>
+<li>SSID: <code>hashwars</code></li>
+<li>password: <code>proofofwork</code></li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-theme="plebnet-workshop" style="--theme:plebnet-workshop;">
@@ -86,7 +86,7 @@
 </code></pre>
 <p>this script will:</p>
 <ul>
-<li>fetch and unpack a tarball from the official bitcoin core distribution pipeline (todo: checksum)</li>
+<li>fetch and unpack a tarball from the official bitcoin core distribution pipeline</li>
 <li>start a <code>bitcoin_datadir</code> for <code>plebnet</code> (with a snapshot of the latest live deployment to accelerate IBD)</li>
 </ul>
 </section>
@@ -123,7 +123,7 @@ addnode=185.130.45.51 # genesis node
 <h1 id="create-a-wallet">create a wallet</h1>
 <p>open a new terminal (since the other one is running <code>bitcoind</code>) and run:</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">source</span> env.sh</span>
-<span class="hljs-meta prompt_">$ </span><span class="language-bash">btc createnewwallet mywallet</span>
+<span class="hljs-meta prompt_">$ </span><span class="language-bash">btc createwallet mywallet</span>
 <span class="hljs-meta prompt_">$ </span><span class="language-bash">btc getnewaddress</span>
 </code></pre>
 <p>these commands will:</p>

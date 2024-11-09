@@ -34,8 +34,8 @@ theme: plebnet-workshop
 
 # wifi
 
-- SSID: `todo`
-- password: `todo`
+- SSID: `hashwars`
+- password: `proofofwork`
 
 ---
 
@@ -90,7 +90,7 @@ $ ./bootstrap_bitcoind.sh
 ```
 
 this script will:
-- fetch and unpack a tarball from the official bitcoin core distribution pipeline (todo: checksum)
+- fetch and unpack a tarball from the official bitcoin core distribution pipeline
 - start a `bitcoin_datadir` for `plebnet` (with a snapshot of the latest live deployment to accelerate IBD)
 
 ---
@@ -133,7 +133,7 @@ open a new terminal (since the other one is running `bitcoind`) and run:
 
 ```shell
 $ source env.sh
-$ btc createnewwallet mywallet
+$ btc createwallet mywallet
 $ btc getnewaddress
 ```
 
