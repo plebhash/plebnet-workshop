@@ -31,7 +31,7 @@
 <h1 id="prerequisites">prerequisites</h1>
 <ul>
 <li>laptop with WiFi</li>
-<li>ubuntu environment</li>
+<li>linux environment</li>
 <li>familiarity with command line</li>
 <li>basic english</li>
 <li>wish to become a sovereign miner</li>
@@ -49,17 +49,16 @@
 <h2 id="18513045511337htmlplebnet-workshophtml"><code>185.130.45.51:1337/html/plebnet-workshop.html</code></h2>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-theme="plebnet-workshop" style="--theme:plebnet-workshop;">
-<h1 id="ubuntu">ubuntu</h1>
-<p>you will need an ubuntu environment</p>
+<h1 id="linux">linux</h1>
+<p>you will need a <img class="emoji" draggable="false" alt="⚠" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/26a0.svg" data-marp-twemoji=""/> <strong>linux environment</strong> <img class="emoji" draggable="false" alt="⚠" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/26a0.svg" data-marp-twemoji=""/></p>
 <p>options:</p>
 <ul>
 <li>native</li>
-<li>VM via <a href="https://multipass.run/">Multipass</a></li>
-<li>VM via <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL</a></li>
+<li>VM</li>
 </ul>
 <p>if you choose a VM, make sure it has:</p>
 <ul>
-<li>bridged network (VM has IP on WiFi network)</li>
+<li><img class="emoji" draggable="false" alt="⚠️" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/26a0.svg" data-marp-twemoji=""/> <strong>bridged network</strong> <img class="emoji" draggable="false" alt="⚠️" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/26a0.svg" data-marp-twemoji=""/> (VM has IP on WiFi network)</li>
 <li>at least 4 CPU cores</li>
 <li>at least 4GB RAM</li>
 </ul>
@@ -138,11 +137,7 @@ addnode=185.130.45.51 # genesis node
 <h1 id="bootstrap-stratum-server">bootstrap <code>stratum-server</code></h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">./bootstrap_stratum_server.sh</span>
 </code></pre>
-<p>this script will:</p>
-<ul>
-<li>install dependencies on ubuntu environment</li>
-<li>clone and build <code>github.com/plebhash/stratum-server</code></li>
-</ul>
+<p>this script will fetch a stratum server</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-theme="plebnet-workshop" style="--theme:plebnet-workshop;">
 <h1 id="configure-stratum-server">configure <code>stratum-server</code></h1>

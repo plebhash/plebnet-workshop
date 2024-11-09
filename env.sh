@@ -20,7 +20,7 @@ PLEBNET_GENESIS_NODE_IP=185.130.45.51
 # paths for stratum-server
 STRATUM_SERVER_DIR=$PWD/stratum-server
 STRATUM_SERVER_CONF=$STRATUM_SERVER_DIR/stratum-server.conf
-STRATUM_SERVER_BIN=$STRATUM_SERVER_DIR/src/ckpool
+STRATUM_SERVER_BIN=$STRATUM_SERVER_DIR/stratum-server
 
 # alias to conveniently start bitcoind
 alias btcd="$BITCOIND -signet -datadir=$BITCOIN_DATADIR -fallbackfee=0.01"

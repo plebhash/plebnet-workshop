@@ -25,7 +25,7 @@ theme: plebnet-workshop
 # prerequisites
 
 - laptop with WiFi
-- ubuntu environment
+- linux environment
 - familiarity with command line
 - basic english
 - wish to become a sovereign miner
@@ -45,17 +45,16 @@ theme: plebnet-workshop
 
 ---
 
-# ubuntu
+# linux
 
-you will need an ubuntu environment
+you will need a ⚠ **linux environment** ⚠
 
 options:
 - native
-- VM via [Multipass](https://multipass.run/)
-- VM via [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
+- VM
 
 if you choose a VM, make sure it has:
-- bridged network (VM has IP on WiFi network)
+- ⚠️ **bridged network** ⚠️ (VM has IP on WiFi network)
 - at least 4 CPU cores
 - at least 4GB RAM
 
@@ -151,9 +150,7 @@ these commands will:
 $ ./bootstrap_stratum_server.sh
 ```
 
-this script will:
-- install dependencies on ubuntu environment
-- clone and build `github.com/plebhash/stratum-server`
+this script will fetch a stratum server
 
 ---
 
