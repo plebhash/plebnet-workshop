@@ -25,7 +25,7 @@ theme: plebnet-workshop
 # prerequisites
 
 - laptop with WiFi
-- linux environment
+- linux x86-64
 - familiarity with command line
 - basic english
 - wish to become a sovereign miner
@@ -34,29 +34,14 @@ theme: plebnet-workshop
 
 # wifi
 
-- SSID: `hashwars`
-- password: `proofofwork`
+- SSID: `IH EVENTOS HUB R00`
+- password: `eventosincriveis`
 
 ---
 
 # slides
 
 ## `185.130.45.51:1337/html/plebnet-workshop.html`
-
----
-
-# linux
-
-you will need a ⚠ **linux environment** ⚠
-
-options:
-- native
-- VM
-
-if you choose a VM, make sure it has:
-- ⚠️ **bridged network** ⚠️ (VM has IP on WiFi network)
-- at least 4 CPU cores
-- at least 4GB RAM
 
 ---
 
@@ -259,7 +244,9 @@ these commands will:
 
 # watch block explorer
 
-# `plebnet.jaonoctus.dev`
+# `185.130.45.51:80`
+
+# ☐☐☐ 👀
 
 ---
 
