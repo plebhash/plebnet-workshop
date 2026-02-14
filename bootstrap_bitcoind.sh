@@ -2,20 +2,27 @@
 
 source env.sh
 
+OS=$(uname -s)
 ARCH=$(uname -m)
 
-case $ARCH in
-    x86_64)
+case "$OS-$ARCH" in
+    Linux-x86_64)
         BITCOIN_TARBALL="bitcoin-${BITCOIN_VERSION}-x86_64-linux-gnu.tar.gz"
         ;;
-    aarch64)
+    Linux-aarch64)
         BITCOIN_TARBALL="bitcoin-${BITCOIN_VERSION}-aarch64-linux-gnu.tar.gz"
         ;;
-    riscv64)
+    Linux-riscv64)
         BITCOIN_TARBALL="bitcoin-${BITCOIN_VERSION}-riscv64-linux-gnu.tar.gz"
         ;;
+    Darwin-x86_64)
+        BITCOIN_TARBALL="bitcoin-${BITCOIN_VERSION}-x86_64-apple-darwin.tar.gz"
+        ;;
+    Darwin-arm64)
+        BITCOIN_TARBALL="bitcoin-${BITCOIN_VERSION}-arm64-apple-darwin.tar.gz"
+        ;;
     *)
-        echo "Unsupported architecture: $ARCH"
+        echo "Unsupported platform: $OS $ARCH"
         exit 1
         ;;
 esac
@@ -25,7 +32,7 @@ BITCOIN_TARBALL_URL="https://bitcoincore.org/bin/bitcoin-core-${BITCOIN_VERSION}
 # Check if the directory exists
 if [ ! -d "$BITCOIN_UNPACKED" ]; then
     echo "Directory $BITCOIN_UNPACKED does not exist. Downloading tarball..."
-    wget "$BITCOIN_TARBALL_URL" -O "$BITCOIN_TARBALL"
+    curl -fL -o "$BITCOIN_TARBALL" "$BITCOIN_TARBALL_URL"
     if [ $? -ne 0 ]; then
         echo "Download failed. Exiting."
         exit 1

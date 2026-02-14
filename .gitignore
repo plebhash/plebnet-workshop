@@ -1,7 +1,12 @@
-.idea
-.DS_Store
-bitcoin-*
-bitcoin_datadir
-bitcoin
-logs
-stratum-endpoint
+# Bitcoin Core binaries (bootstrap_bitcoind.sh)
+bitcoin-*/
+
+# Bitcoin datadir (bootstrap_bitcoind.sh)
+bitcoin_datadir/
+
+# Stratum server built from source (bootstrap_stratum_server.sh)
+stratum-server/
+
+# mujina (cloned and built by bootstrap_mujina.sh)
+mujina/
+

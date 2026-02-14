@@ -20,7 +20,7 @@ PLEBNET_GENESIS_NODE_IP=185.130.45.51
 # paths for stratum-server
 STRATUM_SERVER_DIR=$PWD/stratum-server
 STRATUM_SERVER_CONF=$STRATUM_SERVER_DIR/stratum-server.conf
-STRATUM_SERVER_BIN=$STRATUM_SERVER_DIR/stratum-server
+STRATUM_SERVER_BIN=$STRATUM_SERVER_DIR/src/ckpool
 
 # alias to conveniently start bitcoind
 alias btcd="$BITCOIND -signet -datadir=$BITCOIN_DATADIR -fallbackfee=0.01"
@@ -30,3 +30,14 @@ alias btc="$BITCOIN_CLI -signet -datadir=$BITCOIN_DATADIR"
 
 # alias to conveniently start stratum-server
 alias stratum-server="$STRATUM_SERVER_BIN -c $STRATUM_SERVER_CONF"
+
+# mujina CPU miner
+MUJINA_BIN=$PWD/mujina/target/release/mujina-minerd
+export MUJINA_USB_DISABLE=1
+export MUJINA_CPUMINER_THREADS=4
+export MUJINA_CPUMINER_DUTY=100
+export MUJINA_POOL_URL="stratum+tcp://localhost:3333"
+export MUJINA_POOL_USER="worker1"
+
+# alias to conveniently start mujina
+alias mujina="$MUJINA_BIN"

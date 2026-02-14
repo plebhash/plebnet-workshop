@@ -3,16 +3,13 @@ marp: true
 theme: plebnet-workshop
 ---
 
-# bitaxe hashwar
-# a beginner guide to sovereign bitcoin mining
-
 ![center w:500](../img/banner.png)
 
 ---
 
 # goals
 
-- intro to [bitaxe](https://bitaxe.org/)
+- intro to CPU mining with `mujina`
 - become a sovereign node runner
 - become a sovereign miner
 
@@ -25,7 +22,7 @@ theme: plebnet-workshop
 # prerequisites
 
 - laptop with WiFi
-- linux x86-64
+- linux or macOS (x86-64 / arm64)
 - familiarity with command line
 - basic english
 - wish to become a sovereign miner
@@ -34,8 +31,8 @@ theme: plebnet-workshop
 
 # wifi
 
-- SSID: `IH EVENTOS HUB R00`
-- password: `eventosincriveis`
+- SSID: `FIXME`
+- password: `FIXME`
 
 ---
 
@@ -59,6 +56,30 @@ the genesis node can be found at `185.130.45.51`.
 
 ---
 
+# multipass setup
+
+we use [multipass](https://multipass.run/) to run an Ubuntu VM for a consistent environment.
+
+**install multipass:**
+
+- macOS: `brew install multipass`
+- Ubuntu / Debian / Fedora: `sudo snap install multipass`
+- Anything else: good luck 👍
+
+---
+
+# launch multipass VM
+
+```shell
+$ multipass launch --name plebnet --cpus 8 --memory 2G --disk 10G --bridged
+$ multipass exec plebnet -- bash -c 'echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf'
+$ multipass shell plebnet
+```
+
+all subsequent steps should be run **inside this VM**.
+
+---
+
 # clone workshop repo
 
 ```shell
@@ -76,15 +97,22 @@ $ ./bootstrap_bitcoind.sh
 
 this script will:
 - fetch and unpack a tarball from the official bitcoin core distribution pipeline
-- start a `bitcoin_datadir` for `plebnet` (with a snapshot of the latest live deployment to accelerate IBD)
+- create a `bitcoin_datadir` for `plebnet` (with a snapshot to accelerate IBD)
 
 ---
 
 # add peers to `bitcoin.conf`
 
-- ask the LAN IP address of other workshop participants
-- add the LAN IP to the `addnode` fields of `bitcoin_datadir/bitcoin.conf`
+find your VM's **bridged** LAN IP (the one on the same subnet as the workshop WiFi):
+
+```shell
+$ ip -4 addr show enp0s2 | grep inet
 ```
+
+- share this IP with other workshop participants
+- add their IPs to the `addnode` fields of `bitcoin_datadir/bitcoin.conf`
+
+```text
 [signet]
 server=1
 rpcuser=user
@@ -101,41 +129,50 @@ addnode=185.130.45.51 # genesis node
 
 # connect to `plebnet`
 
+**terminal 1:**
+
 ```shell
 $ source env.sh
 $ btcd
 ```
 
 these commands will:
-- load some shell variables + alias
-- connect your bitcoin node to `plebnet`
+- load shell aliases
+- start `bitcoind` and connect to `plebnet`
+
+this terminal will stay busy running `bitcoind`.
+
+---
+
+# bootstrap `stratum-server` and `mujina`
+
+**terminal 2** (open a new terminal — `multipass shell plebnet`):
+
+```shell
+$ cd plebnet-workshop
+$ source env.sh
+$ ./bootstrap_stratum_server.sh
+$ ./bootstrap_mujina.sh
+```
+
+these scripts will clone and build from source:
+- [`stratum-server`](https://github.com/plebhash/signet-stratum-server) (C)
+- [`mujina`](https://github.com/256foundation/mujina) (Rust)
+
+this may take a few minutes ☕
 
 ---
 
 # create a wallet
 
-open a new terminal (since the other one is running `bitcoind`) and run:
-
 ```shell
-$ source env.sh
 $ btc createwallet mywallet
 $ btc getnewaddress
 ```
 
 these commands will:
-- load some shell variables + alias
 - create a new wallet on your `bitcoin_datadir`
-- get a new address on this wallet
-
----
-
-# bootstrap `stratum-server`
-
-```shell
-$ ./bootstrap_stratum_server.sh
-```
-
-this script will fetch a stratum server
+- get a new address — **copy it now, you'll need it next!**
 
 ---
 
@@ -145,106 +182,64 @@ this script will fetch a stratum server
 $ nano stratum-server/stratum-server.conf 
 ```
 
-edit the following fields of the configuration file:
-- `btcaddress`: copy-paste the address of the wallet step
-- `btcsig`: write a custom tag for the blocks you mine
+edit the following fields:
+- `btcaddress`: paste the address you just copied (replace `your bitcoin address`)
+- `btcsig`: write a custom coinbase tag for blocks you mine
 
 ---
 
 # start `stratum-server`
+
+**terminal 2** (same terminal used for wallet):
 
 ```shell
 $ source env.sh
 $ stratum-server
 ```
 
-these commands will:
-- load some shell environment variables + alias
-- start `stratum-server`
+this will start the stratum server on port `3333`.
 
----
-# power bitaxe
-
-- Plug the included 5V 5A power supply into wall outlet
-- Attach the 5V barrel plug into the Bitaxe
-
-![center w:600](../img/barrel.jpg)
-
----
-# setup bitaxe
-
-- using your phone or a laptop, join the Bitaxe setup SSID shown on the display. in this case; `Bitaxe_6E71`
-
-![center w:600](../img/wifisetup1.jpg)
-
----
-# config bitaxe
-
-- After your phone connects to the Bitaxe setup wifi, you should see a "captive portal" appear. If not, open a browser and go to `http://192.168.4.1`
-- Open the hamburger menu in the upper right and open the Network tab
-
-![center w:500](../img/wifi1.jpg)
-
----
-# config bitaxe
-
-- Enter the conference WiFi name and password **exactly**
-- click `Save`
-
-![center w:600](../img/wifi2.jpg)
-
----
-# config bitaxe
-
-- Go back to the hamburger menu. Click on `Restart` at the bottom
-
-![center w:600](../img/wifi3.jpg)
+this terminal will stay busy running `stratum-server`.
 
 ---
 
-# configure bitaxe mining
+# start mining
 
-- after the Bitaxe restarts it will show an IP address on the screen. Make sure your computer is back on conference wifi, and open this IP in your browser.
+**terminal 3** (open yet another terminal — `multipass shell plebnet`):
 
-![center w:600](../img/stratumsetup1.jpg)
+```shell
+$ cd plebnet-workshop
+$ source env.sh
+$ mujina
+```
 
----
-
-# configure bitaxe mining
-
-- open the hamburger menu (if not already open) and click on the settings tab
-
-![center w:600](../img/stratum1.jpg)
-
----
-
-# configure bitaxe mining
-
-- Enter the workshop stratum details
-
-![center w:600](../img/stratum2.jpg)
+this will:
+- connect to your local `stratum-server` via Stratum v1
+- mine using the CPU (USB hardware discovery is disabled)
+- use **4 threads** by default (configured in `env.sh`)
 
 ---
 
-# configure bitaxe mining
+# tuning `mujina`
 
-- click `save`
+`mujina` is configured via environment variables (set in `env.sh`):
 
-![center w:600](../img/stratum3.jpg)
+- `MUJINA_CPUMINER_THREADS` — CPU hashing threads (default: `4`)
+- `MUJINA_CPUMINER_DUTY` — duty cycle %, 1-100 (default: `100`)
 
----
+to change settings, stop `mujina`, then:
+```shell
+$ export MUJINA_CPUMINER_THREADS=8
+$ mujina
+```
 
-# configure bitaxe mining
-
-- click `restart`
-
-![center w:600](../img/stratum4.jpg)
+more threads and more duty = more hashrate = faster shares. be mindful of your VM's core count.
 
 ---
 
 # watch block explorer
 
-# `185.130.45.51:80`
+# http://185.130.45.51:8080
 
 # ☐☐☐ 👀
 

@@ -35,8 +35,16 @@ credit {
   margin: 0 auto;
 }
 
+code {
+  color: #eeeeee;
+}
+
 code * {
-  color: #cccccc;
+  color: #eeeeee;
+}
+
+code .hljs-comment {
+  color: #999999;
 }
 
 pre {
